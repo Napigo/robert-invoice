@@ -19,8 +19,10 @@ import { upperCase } from "lodash";
 import { MenuTitle } from "./MenuTitle";
 import { MenuItem as Item } from "./MenuItem";
 import { routerConfig } from "@/configs/router.config";
+import { useSession } from "@/hooks/useSession";
 
 const SideDrawer: React.FC = () => {
+  const { clearSession } = useSession();
   return (
     <Box
       width={240}
@@ -65,7 +67,10 @@ const SideDrawer: React.FC = () => {
               </Link>
             </MenuButton>
             <MenuList borderRadius={3}>
-              <MenuItem icon={<IoMdLogOut fill="inherit" />}>
+              <MenuItem
+                icon={<IoMdLogOut fill="inherit" />}
+                onClick={clearSession}
+              >
                 <Text color={"red.500"} fontSize="sm" fontWeight="bold">
                   Logout
                 </Text>

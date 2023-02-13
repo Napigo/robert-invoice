@@ -48,7 +48,7 @@ export const useSession = () => {
     dispatch(SessionActions.isAuthenticated(true));
     setTimeout(() => {
       dispatch(SessionActions.isAuthing(false));
-    }, 3000);
+    }, 2000);
   }, []);
 
   const clearSession = useCallback(() => {
@@ -56,6 +56,7 @@ export const useSession = () => {
     localStorage.removeItem("SESSION");
     dispatch(SessionActions.clearSession());
     dispatch(SessionActions.isAuthenticated(false));
+    dispatch(SessionActions.isAuthing(false));
   }, []);
 
   return {
