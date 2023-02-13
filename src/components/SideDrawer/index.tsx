@@ -2,7 +2,6 @@ import React from "react";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { FaRegFileAlt } from "react-icons/fa";
 import { IoMdLogOut } from "react-icons/io";
-import { MdOutlineReceiptLong } from "react-icons/md";
 import {
   Box,
   HStack,
@@ -82,11 +81,6 @@ const SideDrawer: React.FC = () => {
 
       <VStack marginTop={50}>
         <MenuTitle title="Main Menu" />
-        <Item
-          title={routerConfig.orders.title}
-          path={routerConfig.orders.path}
-          icon={<MdOutlineReceiptLong size={15} />}
-        />
         <Item
           title={routerConfig.invoice.title}
           path={routerConfig.invoice.path}

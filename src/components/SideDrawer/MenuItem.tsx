@@ -1,6 +1,6 @@
-import { background, HStack, Text } from "@chakra-ui/react";
-import { Link, useLocation } from "react-router-dom";
 import React from "react";
+import { HStack, Text } from "@chakra-ui/react";
+import { Link, useLocation } from "react-router-dom";
 
 type Props = {
   icon: React.ReactElement;

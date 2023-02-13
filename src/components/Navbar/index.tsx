@@ -1,7 +1,7 @@
-import { Center, Divider, HStack, Link } from "@chakra-ui/react";
 import React from "react";
-import { FaFileCsv, FaPlus } from "react-icons/fa";
+import { HStack } from "@chakra-ui/react";
 import { BreadCrumb } from "../Breadcrumb";
+import { NavControls } from "./NavControls";
 
 export const Navbar: React.FC = () => {
   return (
@@ -17,33 +17,7 @@ export const Navbar: React.FC = () => {
       justifyContent="space-between"
     >
       <BreadCrumb />
-      <HStack gap={4}>
-        <Link
-          fontSize={13}
-          fontWeight="semibold"
-          color="brand.500"
-          display={"flex"}
-          flexDirection="row"
-          gap={1}
-          alignItems="center"
-        >
-          <FaPlus /> CREATE ORDERS
-        </Link>
-        <Center height={"30px"}>
-          <Divider orientation="vertical" color={"gray.500"} />
-        </Center>
-        <Link
-          fontSize={13}
-          fontWeight="semibold"
-          color="brand.500"
-          display={"flex"}
-          flexDirection="row"
-          gap={1}
-          alignItems="center"
-        >
-          <FaFileCsv /> IMPORT TO CSV
-        </Link>
-      </HStack>
+      <NavControls />
     </HStack>
   );
 };
