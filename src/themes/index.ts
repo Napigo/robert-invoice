@@ -8,7 +8,7 @@ import { components } from "./components";
 
 export const appTheme = extendTheme({
   config: {
-    initialColorMode: "dark",
+    initialColorMode: "light",
     useSystemColorMode: true,
   },
   semanticTokens,
