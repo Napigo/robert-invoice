@@ -3,7 +3,7 @@ import React from "react";
 import { FaFileCsv, FaPlus } from "react-icons/fa";
 import { BreadCrumb } from "../Breadcrumb";
 
-export const Nav: React.FC = () => {
+export const Navbar: React.FC = () => {
   return (
     <HStack
       as="nav"
