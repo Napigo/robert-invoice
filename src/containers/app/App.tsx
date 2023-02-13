@@ -1,6 +1,7 @@
-import { useSession } from "@/hooks/useSession";
-import { AuthLoginPage } from "@/pages/AuthLoginPage";
 import React, { useEffect } from "react";
+import { useSession } from "@/hooks/useSession";
+import { AuthLoginPage } from "@/pages/auth/AuthLoginPage";
+import { AppRoutes } from "@/routes";
 import { AppLoader } from "./AppLoader";
 
 export const App: React.FC = () => {
@@ -16,7 +17,7 @@ export const App: React.FC = () => {
   if (!authing && !authenticated) {
     return <AuthLoginPage />;
   }
-  return <h1>Hello</h1>;
+  return <AppRoutes />;
 };
 
 /**
