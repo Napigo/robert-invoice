@@ -1,0 +1,82 @@
+/*
+	API: http://localhost:3000/inventory/
+	Description: To get all invoices from the database
+	Method: GET
+	Parameters: NONE
+	response: {
+		invoiceNo: '01010',
+		customerName: 'Robert',
+		contactNo: '12345678',
+		email: 'qwerty@abc.com',
+		grandTotal: '280',
+		datePurchased: '02/25/2023'
+		products:[
+			{
+				SKU : '0001',
+				unitPrice: '50',
+				description: "product desc #1",
+				quantity: '5',
+				serialNumbers: [
+					'1234',
+					'2345',
+					'3456',
+					'4567',
+					'5678',
+				]
+
+			},
+			{
+				SKU : '0002',
+				unitPrice: '10',
+				description: "product desc #2",
+				quantity: '3',
+				serialNumbers: [
+					'4321',
+					'3210',
+					'2109',
+				]
+
+			},
+		]
+	}
+*/
+
+/*
+	API: http://localhost:3000/inventory/new-inv
+	Description: To create new invoice
+	Method: POST
+	Body: {
+		invoiceNo: '01010',
+		customerName: 'Robert',
+		contactNo: '12345678',
+		email: 'qwerty@abc.com',
+		grandTotal: '280',
+		datePurchased: '02/25/2023'
+		products:[
+			{
+				SKU : '0001',
+				unitPrice: '50',
+				quantity: '5',
+				serialNumbers: [
+					'1234',
+					'2345',
+					'3456',
+					'4567',
+					'5678',
+				]
+
+			},
+			{
+				SKU : '0002',
+				unitPrice: '10',
+				quantity: '3',
+				serialNumbers: [
+					'4321',
+					'3210',
+					'2109',
+				]
+
+			},
+		]
+	}
+*/

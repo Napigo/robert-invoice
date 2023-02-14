@@ -1,14 +1,14 @@
 import React from "react";
-import { InvoiceSummarySection } from "@/components/Invoices/InvoiceSummarySection";
-import { Box, Flex, HStack, VStack } from "@chakra-ui/react";
+import { Flex, VStack } from "@chakra-ui/react";
 import { SearchFilterArea } from "@/components/Invoices/SearchFilterArea";
 import { Pagination } from "@/components/Pagination";
+import { InvoiceTable } from "@/components/Invoices/Table";
 
 export const InvoiceListingPage: React.FC = () => {
   return (
     <VStack flex={1} background="blu" paddingTop={"20px"} paddingBottom="20px">
-      <InvoiceSummarySection />
       <SearchFilterArea />
+      <InvoiceTable />
       <Flex
         width={"100%"}
         display={"flex"}
