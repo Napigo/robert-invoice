@@ -13,6 +13,7 @@ import {
   MenuItem,
   Button,
   IconButton,
+  Text,
 } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import { IoEllipsisVertical } from "react-icons/io5";
@@ -61,7 +62,15 @@ export const InvoiceTable: React.FC = () => {
                 <Menu>
                   <MenuButton as={IconButton} icon={<IoEllipsisVertical />} />
                   <MenuList>
-                    <MenuItem>Delete Invoice</MenuItem>
+                    <MenuItem>
+                      <Text
+                        fontSize={"sm"}
+                        fontWeight="semibold"
+                        color="red.500"
+                      >
+                        Delete Invoice
+                      </Text>
+                    </MenuItem>
                   </MenuList>
                 </Menu>
               </Td>

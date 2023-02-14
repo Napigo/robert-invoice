@@ -11,8 +11,9 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine } from "react-icons/ri";
 import { IoFilterCircleOutline } from "react-icons/io5";
+import DateRangePicker from "./DateRangePicker";
 
-const COLLAPSED_HEIGHT = 40;
+const COLLAPSED_HEIGHT = 50;
 const EXPANDED_HEIGHT = 200;
 
 export const SearchFilterArea: React.FC = () => {
@@ -24,7 +25,7 @@ export const SearchFilterArea: React.FC = () => {
       transition={{ duration: 0.3 }}
       style={{
         width: "100%",
-        background: "pinks",
+        background: "greens",
         overflowY: "hidden",
         flex: 1,
         paddingLeft: "20px",
@@ -33,12 +34,12 @@ export const SearchFilterArea: React.FC = () => {
     >
       <HStack
         width={"100%"}
-        height={`${COLLAPSED_HEIGHT + 10}px`}
-        background={"transparent"}
+        height={`${COLLAPSED_HEIGHT}px`}
+        background={"pinks"}
       >
         <InputGroup maxW={300}>
           <InputLeftElement pointerEvents="none" children={<RiSearchLine />} />
-          <Input placeholder="Search invoices" />
+          <Input background="white" placeholder="Search invoices" />
         </InputGroup>
 
         <Button
@@ -51,6 +52,9 @@ export const SearchFilterArea: React.FC = () => {
         {/* <Link alignItems={"center"} color="brand.500">
           <Text>Clear Filter</Text>
         </Link> */}
+      </HStack>
+      <HStack background={"pinka"} width="100%" height="inherit">
+        <DateRangePicker />
       </HStack>
     </motion.div>
   );
