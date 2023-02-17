@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSession } from "@/hooks/useSession";
-import { AuthLoginPage } from "@/pages/auth/AuthLoginPage";
+import { AuthLoginPage } from "@/pages/Auth/AuthLoginPage";
 import { AppRoutes } from "@/routes";
 import { AppLoader } from "./AppLoader";
 
@@ -9,7 +9,7 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     checkAuth();
-  }, []);
+  }, [checkAuth]);
 
   if (authing) {
     return <AppLoader />;

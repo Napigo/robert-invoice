@@ -23,11 +23,12 @@ import { IoEllipsisVertical } from "react-icons/io5";
 import { Invoice } from "@/types";
 import { uniqueId } from "lodash";
 import { displayCurrency } from "@/utils/currency";
-import { Pagination } from "@/components/Pagination";
+import { Pagination } from "@/components/UIKIT/Pagination";
 import { fetchInvoices } from "@/lib/apis/invoice-service";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { SearchFilterArea } from "../SearchFilterArea";
+import { useNavigate } from "react-router-dom";
 
 export const InvoiceTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -56,6 +57,15 @@ export const InvoiceTable: React.FC = () => {
   const onSearch = useCallback(() => {
     queryClient.invalidateQueries(["invoices"]);
   }, [queryClient]);
+
+  const nav = useNavigate();
+
+  const handleInvoiceClick = useCallback(
+    (item: Invoice) => {
+      nav(`${item.InvoiceNo}`, { state: { invoice: item } });
+    },
+    [nav]
+  );
 
   return (
     <>
@@ -108,6 +118,7 @@ export const InvoiceTable: React.FC = () => {
                         fontSize={14}
                         wordBreak="break-all"
                         _hover={{ color: "brand.500" }}
+                        onClick={() => handleInvoiceClick(item)}
                       >
                         {item.InvoiceNo}
                       </Link>
