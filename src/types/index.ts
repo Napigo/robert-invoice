@@ -12,11 +12,10 @@ export interface Product {
 }
 
 export interface Invoice {
-  invoiceNo: string;
-  customerName: string;
-  contactNo: string;
-  email: string;
-  grandTotal: string;
-  datePurchased: string;
-  products: Product[];
+  InvoiceNo: string;
+  CustomerName: string;
+  ContactNo: string;
+  Email: string;
+  GrandTotalPrice: string;
+  DatePurchased: string;
 }

@@ -1,9 +1,8 @@
-import React, { useCallback, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React, { useCallback } from "react";
+import { AnimatePresence } from "framer-motion";
 import {
   Button,
   FormControl,
-  FormLabel,
   HStack,
   Input,
   InputGroup,
@@ -13,8 +12,6 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { RiSearchLine } from "react-icons/ri";
-import { IoFilterCircleOutline } from "react-icons/io5";
-import { InvoicePeriod } from "./InvoicePeriod";
 import { TextField } from "@/components/UIKit/Form";
 import { Search2Icon } from "@chakra-ui/icons";
 import { useFormik } from "formik";
@@ -24,13 +21,14 @@ import {
 } from "@/redux/invoice-filter-store";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { isEmpty } from "lodash";
 
 const COLLAPSED_HEIGHT = 50;
-const EXPANDED_HEIGHT = 320;
 
-export const SearchFilterArea: React.FC = () => {
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
+type Props = {
+  onSearch: () => void;
+};
+export const SearchFilterArea: React.FC<Props> = ({ onSearch }) => {
   const dispatch = useDispatch();
 
   const isFilterActive = useSelector(
@@ -39,33 +37,39 @@ export const SearchFilterArea: React.FC = () => {
 
   const formik = useFormik<InvoiceFilter>({
     initialValues: {
-      search_term: "",
       invoice_no: "",
-      start_at: "",
-      end_at: "",
       customer_name: "",
       email_address: "",
-      min_amount: 0,
-      max_amount: 0,
     },
     onSubmit(values: InvoiceFilter) {
-      dispatch(InvoiceFilterActions.populateFilter(values));
-      console.log(values);
+      /**
+       * Wont using redux for this actually
+       * Deprecated
+       */
+      const withFilter = Boolean(
+        !isEmpty(values.invoice_no) ||
+          !isEmpty(values.customer_name) ||
+          !isEmpty(values.email_address)
+      );
+      if (withFilter) {
+        dispatch(InvoiceFilterActions.populateFilter(values));
+      } else {
+        dispatch(InvoiceFilterActions.clearFilter());
+      }
+
+      onSearch();
     },
   });
 
   const clearFilter = useCallback(() => {
     dispatch(InvoiceFilterActions.clearFilter());
     formik.resetForm();
-    setIsExpanded(false);
-  }, [dispatch, formik]);
+    onSearch();
+  }, [dispatch, formik, onSearch]);
 
   return (
     <AnimatePresence initial={false}>
-      <motion.div
-        initial={{ height: isExpanded ? COLLAPSED_HEIGHT : EXPANDED_HEIGHT }}
-        animate={{ height: isExpanded ? EXPANDED_HEIGHT : COLLAPSED_HEIGHT }}
-        transition={{ duration: 0.3 }}
+      <VStack
         style={{
           width: "100%",
           background: "greens",
@@ -73,6 +77,7 @@ export const SearchFilterArea: React.FC = () => {
           flex: 1,
           paddingLeft: "20px",
           paddingRight: "20px",
+          alignItems: "flex-start",
         }}
       >
         <HStack
@@ -86,21 +91,41 @@ export const SearchFilterArea: React.FC = () => {
               children={<RiSearchLine />}
             />
             <Input
-              onChange={formik.handleChange("search_term")}
-              value={formik.values.search_term}
+              onChange={formik.handleChange("invoice_no")}
+              value={formik.values.invoice_no}
               background="white"
-              placeholder="Search invoices"
+              placeholder="Invoice No."
             />
           </InputGroup>
 
+          <FormControl maxWidth={"300px"}>
+            <TextField
+              onChange={formik.handleChange("customer_name")}
+              value={formik.values.customer_name}
+              type="text"
+              background={"white"}
+              placeholder="Customer Name"
+            />
+          </FormControl>
+          <FormControl maxWidth={"300px"}>
+            <TextField
+              onChange={formik.handleChange("email_address")}
+              value={formik.values.email_address}
+              type="text"
+              background={"white"}
+              placeholder="Email Address"
+            />
+          </FormControl>
+        </HStack>
+        <HStack>
           <Button
             background={isFilterActive ? "brand.50" : "white"}
             borderColor={isFilterActive ? "brand.500" : "gray.200"}
-            onClick={() => setIsExpanded(!isExpanded)}
-            leftIcon={<IoFilterCircleOutline />}
+            onClick={() => formik.handleSubmit()}
+            leftIcon={<Search2Icon />}
             color={isFilterActive ? "brand.500" : "black"}
           >
-            Filter
+            Search
           </Button>
           {isFilterActive && (
             <Link
@@ -113,92 +138,7 @@ export const SearchFilterArea: React.FC = () => {
             </Link>
           )}
         </HStack>
-        <VStack>
-          <HStack
-            background={"pinka"}
-            width="100%"
-            height="inherit"
-            alignItems={"flex-start"}
-            paddingTop={"20px"}
-            paddingBottom={"0px"}
-          >
-            <FormControl maxWidth={"300px"}>
-              <FormLabel>Invoice no.</FormLabel>
-              <TextField
-                onChange={formik.handleChange("invoice_no")}
-                value={formik.values.invoice_no}
-                background={"white"}
-              />
-            </FormControl>
-            <FormControl maxWidth={"300px"}>
-              <FormLabel>Min Amount</FormLabel>
-              <TextField
-                onChange={formik.handleChange("min_amount")}
-                value={formik.values.min_amount}
-                type="number"
-                background={"white"}
-              />
-            </FormControl>
-            <FormControl maxWidth={"300px"}>
-              <FormLabel>Max Amount</FormLabel>
-              <TextField
-                onChange={formik.handleChange("max_amount")}
-                value={formik.values.max_amount}
-                type="number"
-                background={"white"}
-              />
-            </FormControl>
-
-            <InvoicePeriod />
-          </HStack>
-          <HStack
-            background={"pinks"}
-            width="100%"
-            height="inherit"
-            alignItems={"flex-end"}
-            paddingTop={"20px"}
-            paddingBottom={"0px"}
-          >
-            <FormControl maxWidth={"300px"}>
-              <FormLabel>Customer Name</FormLabel>
-              <TextField
-                onChange={formik.handleChange("customer_name")}
-                value={formik.values.customer_name}
-                type="text"
-                background={"white"}
-              />
-            </FormControl>
-            <FormControl maxWidth={"300px"}>
-              <FormLabel>Email Address</FormLabel>
-              <TextField
-                onChange={formik.handleChange("email_address")}
-                value={formik.values.email_address}
-                type="text"
-                background={"white"}
-              />
-            </FormControl>
-          </HStack>
-          <HStack
-            background={"pinks"}
-            width="100%"
-            height="inherit"
-            alignItems={"flex-end"}
-            paddingTop={"20px"}
-            paddingBottom={"0px"}
-          >
-            <Button
-              onClick={() => formik.handleSubmit()}
-              leftIcon={<Search2Icon />}
-              colorScheme={"brand"}
-            >
-              Search Filter
-            </Button>
-            <Button onClick={clearFilter} background={"white"}>
-              Clear
-            </Button>
-          </HStack>
-        </VStack>
-      </motion.div>
+      </VStack>
     </AnimatePresence>
   );
 };
