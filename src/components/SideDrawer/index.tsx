@@ -65,7 +65,7 @@ const SideDrawer: React.FC = () => {
                 {"Menu"}
               </Link>
             </MenuButton>
-            <MenuList borderRadius={3}>
+            <MenuList zIndex={1000} borderRadius={3}>
               <MenuItem
                 icon={<IoMdLogOut fill="inherit" />}
                 onClick={clearSession}

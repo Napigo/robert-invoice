@@ -7,6 +7,9 @@ import { ErrorDialog } from "@/common/ErrorDialog";
 import { App } from "./App";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export const AppContainer: React.FC = () => {
   return (
@@ -18,7 +21,9 @@ export const AppContainer: React.FC = () => {
           )}
         >
           <Provider store={store}>
-            <App />
+            <QueryClientProvider client={queryClient}>
+              <App />
+            </QueryClientProvider>
           </Provider>
         </ErrorBoundary>
       </Router>

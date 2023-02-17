@@ -2,8 +2,8 @@ import { Invoice } from "@/types";
 import { faker } from "@faker-js/faker";
 
 export const generateMockInvoices = (
-  count: number = 20,
-  productCount: number = 10
+  count = 20,
+  productCount = 10
 ): Invoice[] => {
   const list: Invoice[] = Array(count)
     .fill(0)

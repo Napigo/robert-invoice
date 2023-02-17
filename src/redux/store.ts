@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import SessionStore from "./session-store";
+import InvoiceFilterStore from "./invoice-filter-store";
 
 export const store = configureStore({
   reducer: {
     Session: SessionStore,
+    InvoiceFilter: InvoiceFilterStore,
   },
 });
 

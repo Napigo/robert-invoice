@@ -1,6 +1,6 @@
+import React from "react";
 import { HStack, Text } from "@chakra-ui/react";
 import { upperCase } from "lodash";
-import React from "react";
 
 type Props = {
   title: string;

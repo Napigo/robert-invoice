@@ -31,7 +31,7 @@ const reducer = createReducer<SessionState>(initialState, (build) => {
       }
     );
   });
-  build.addCase(clearSession, (state, action) => {
+  build.addCase(clearSession, (state, _) => {
     return Object.assign(
       state,
       {},

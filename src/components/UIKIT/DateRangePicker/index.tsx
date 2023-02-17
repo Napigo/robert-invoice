@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import moment from "moment";
 import { Month_Names_Short, Weekday_Names_Short } from "./utils";
 import {
@@ -60,7 +60,6 @@ const propsConfigs = {
   },
   inputProps: {
     background: "white",
-    maxWidth: 300,
   },
   popoverCompProps: {
     popoverContentProps: {
@@ -79,6 +78,7 @@ export interface RangeDatepickerProps extends DatepickerProps {
   id?: string;
   name?: string;
   usePortal?: boolean;
+  placeholder: string;
 }
 
 const DefaultConfigs: CalendarConfigs = {
@@ -102,11 +102,7 @@ export const RangeDatepicker: React.FC<RangeDatepickerProps> = ({
     new Date(),
   ]);
   const [inputValues, setInputvalues] = useState<string>("");
-  const { minDate, maxDate, disabled, onDateChange } = props;
-
-  useEffect(() => {
-    console.log(selectedDates);
-  }, [selectedDates]);
+  const { minDate, maxDate, disabled, onDateChange, placeholder } = props;
 
   // chakra popover utils
   const [dateInView, setDateInView] = useState(selectedDates[0] || new Date());
@@ -128,10 +124,10 @@ export const RangeDatepicker: React.FC<RangeDatepickerProps> = ({
     if (!selectable) {
       return;
     }
-    let newDates = [...selectedDates];
+    const newDates = [...selectedDates];
     if (selectedDates.length) {
       if (selectedDates.length === 1) {
-        let firstTime = selectedDates[0];
+        const firstTime = selectedDates[0];
         if (firstTime < date) {
           newDates.push(date);
         } else {
@@ -177,17 +173,11 @@ export const RangeDatepicker: React.FC<RangeDatepickerProps> = ({
     setInputvalues(inputVal);
   }, [inputVal]);
 
-  // const openPicker = useCallback(() => {
-  //   if (
-  //     isEmpty(inputValues) &&
-  //     isEmpty(selectedDates[0] && isEmpty(selectedDates[1]))
-  //   ) {
-  //     setSelectedDates([new Date(), new Date()]);
-  //   }
-  //   onOpen();
-  // }, [selectedDates, inputValues]);
-
-  const onBlurHandle = useCallback(() => {}, [selectedDates]);
+  useEffect(() => {
+    if (isEmpty(inputValues)) {
+      setSelectedDates([]);
+    }
+  }, [isOpen, inputValues]);
 
   return (
     <Popover
@@ -206,7 +196,7 @@ export const RangeDatepicker: React.FC<RangeDatepickerProps> = ({
               onOpen();
             }
           }}
-          onBlur={onBlurHandle}
+          placeholder={placeholder}
           id={id}
           autoComplete="off"
           isDisabled={disabled}
