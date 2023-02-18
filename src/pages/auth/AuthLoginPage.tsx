@@ -3,7 +3,6 @@ import { LoginForm } from "@/components/LoginForm";
 import { Box, Container, Text } from "@chakra-ui/react";
 
 export const AuthLoginPage: React.FC = () => {
-  console.log("authlogin page");
   return (
     <Container
       maxW={"900px"}

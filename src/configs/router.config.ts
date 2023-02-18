@@ -6,4 +6,8 @@ export const routerConfig = {
     path: "invoices",
     title: "Invoices",
   },
+  products: {
+    path: "products",
+    title: "Products",
+  },
 };

@@ -1,23 +1,49 @@
-import React from "react";
-import { HStack, Text } from "@chakra-ui/react";
+import React, { useCallback } from "react";
+import { BoxProps, HStack, Text } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 
-type Props = {
+interface Props extends BoxProps {
   icon: React.ReactElement;
   title: string;
-  path: string;
-};
-export const MenuItem: React.FC<Props> = ({ icon, title, path }) => {
+  path?: string;
+  onClick?: () => void;
+}
+
+export const MenuItem: React.FC<Props> = ({
+  icon,
+  title,
+  path,
+  onClick,
+  ...boxProps
+}) => {
   const location = useLocation();
   const isActive = React.useMemo(() => {
+    if (path === undefined) {
+      return false;
+    }
     return location.pathname.includes(path);
   }, [path, location.pathname]);
 
+  const generateProps = useCallback(() => {
+    if (path) {
+      return {
+        as: Link,
+        to: path,
+      };
+    }
+    return {
+      as: "button",
+      onClick:
+        onClick ??
+        (() => {
+          /** */
+        }),
+    };
+  }, [path, onClick]);
+
   return (
     <HStack
-      as={Link}
-      replace
-      to={path}
+      {...(generateProps() as any)}
       borderRadius="md"
       paddingTop="5px"
       paddingBottom="5px"
@@ -30,9 +56,10 @@ export const MenuItem: React.FC<Props> = ({ icon, title, path }) => {
       marginLeft={"-10px"}
       marginRight={"-10px"}
       color={isActive ? "brand.500" : "gray.500"}
+      {...boxProps}
     >
       {icon}
-      <Text color="gray.600" fontWeight={"semibold"}>
+      <Text color="gray.600" fontWeight={"normal"}>
         {title}
       </Text>
     </HStack>

@@ -1,24 +1,14 @@
 import React from "react";
-import { HiMenuAlt2 } from "react-icons/hi";
 import { FaRegFileAlt } from "react-icons/fa";
-import { IoMdLogOut } from "react-icons/io";
-import {
-  Box,
-  HStack,
-  Link,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, HStack, Text, VStack } from "@chakra-ui/react";
 import { Logo } from "@/common/Logo";
 import { upperCase } from "lodash";
 import { MenuTitle } from "./MenuTitle";
 import { MenuItem as Item } from "./MenuItem";
 import { routerConfig } from "@/configs/router.config";
 import { useSession } from "@/hooks/useSession";
+import { MdLogout } from "react-icons/md";
+import { FiShoppingCart } from "react-icons/fi";
 
 const SideDrawer: React.FC = () => {
   const { clearSession } = useSession();
@@ -37,54 +27,45 @@ const SideDrawer: React.FC = () => {
         flex={1}
         height={70}
         alignItems="center"
-        border="1px solid transparent"
+        // borderBottomColor="gray.200"
+        // borderBottomWidth="1px"
+        // border="1px solid black"
+        paddingTop={"10px"}
       >
         <VStack alignItems={"center"} border="1px solid transparent">
           <Logo width={40} height={39} />
         </VStack>
-        <VStack alignItems={"flex-start"} gap={0} spacing={"5px"}>
+        <VStack
+          alignItems={"flex-start"}
+          gap={0}
+          spacing={"5px"}
+          bg="pinks"
+          flex={1}
+        >
           <Text fontWeight={"bold"} fontSize={"xs"}>
             {upperCase("Robert Invoice")}
           </Text>
-          <Menu>
-            <MenuButton as={"button"} flex={1}>
-              <Link
-                fontSize={"xs"}
-                borderWidth={1}
-                borderColor="card-border-color"
-                paddingLeft="2"
-                paddingRight="2"
-                borderRadius={4}
-                fontWeight="bold"
-                color="gray.500"
-                flexDirection={"row"}
-                display="flex"
-                alignItems="center"
-              >
-                <HiMenuAlt2 size={15} />
-                {"Menu"}
-              </Link>
-            </MenuButton>
-            <MenuList zIndex={1000} borderRadius={3}>
-              <MenuItem
-                icon={<IoMdLogOut fill="inherit" />}
-                onClick={clearSession}
-              >
-                <Text color={"red.500"} fontSize="sm" fontWeight="bold">
-                  Logout
-                </Text>
-              </MenuItem>
-            </MenuList>
-          </Menu>
         </VStack>
       </HStack>
 
-      <VStack marginTop={50}>
+      <VStack marginTop={50} bg="s" flex={1}>
         <MenuTitle title="Main Menu" />
         <Item
           title={routerConfig.invoice.title}
           path={routerConfig.invoice.path}
           icon={<FaRegFileAlt size={15} />}
+        />
+        <Item
+          title={routerConfig.products.title}
+          path={routerConfig.products.path}
+          icon={<FiShoppingCart size={15} />}
+        />
+
+        <MenuTitle title="Options" />
+        <Item
+          onClick={clearSession}
+          title="Logout"
+          icon={<MdLogout size={15} />}
         />
       </VStack>
     </Box>

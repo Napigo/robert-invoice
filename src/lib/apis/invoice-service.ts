@@ -2,7 +2,7 @@ import { InvoiceFilter } from "@/redux/invoice-filter-store";
 import { Invoice } from "@/types";
 import { generateMockInvoices } from "../mocks/invoice.mocks";
 
-const DELAY = 2000;
+const DELAY = 500;
 
 export interface HTTPResponse<T> {
   data: T;
