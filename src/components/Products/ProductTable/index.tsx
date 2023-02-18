@@ -53,7 +53,7 @@ export const ProductTable: React.FC<ProductTableProps> = ({
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4} pr={0} pl={0}>
-          <Table variant="simple" p={0}>
+          <Table variant="striped" p={0}>
             <Thead>
               <Tr>
                 <Th>Product Name</Th>
