@@ -1,6 +1,9 @@
 import { InvoiceFilter } from "@/redux/invoice-filter-store";
-import { Invoice } from "@/types";
-import { generateMockInvoices } from "../mocks/invoice.mocks";
+import { Invoice, InvoiceDetail } from "@/types";
+import {
+  generateInvoiceDetail,
+  generateMockInvoices,
+} from "../mocks/invoice.mocks";
 
 const DELAY = 500;
 
@@ -30,6 +33,24 @@ export const fetchInvoices = async (
           page,
           result: rawData,
         },
+      });
+    }, DELAY);
+  });
+};
+
+/**
+ *
+ * @param invoice_no
+ * @returns
+ */
+export const fetchInvoiceDetail = async (
+  invoice_no: string
+): Promise<HTTPResponse<InvoiceDetail>> => {
+  return new Promise((resolve, _) => {
+    const data = generateInvoiceDetail(invoice_no);
+    setTimeout(() => {
+      resolve({
+        data,
       });
     }, DELAY);
   });

@@ -1,0 +1,24 @@
+{
+  "data": {
+    "InvoiceNo": "881-4070-bd07-212aeff931b8",
+    "CustomerName": "Jose Kreiger",
+    "ContactNo": "735-580-0842 x8703",
+    "Email": "Makayla_Cremin@yahoo.com",
+    "GrandTotalPrice": "$945.28",
+    "DatePurchased": "Mon Jan 09 2023 10:56:29 GMT+0800 (Singapore Standard Time)",
+    "Products": [
+      {
+        "SKU": "SKU-h77amb43",
+        "Name": "Awesome Plastic Salad",
+        "UnitPrice": "$99.04",
+        "Description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+        "Quantity": "5",
+        "SerialNumbers": [
+          "SE-20220316-zs09o6",
+          "SE-20220830-xw36ol",
+          "SE-20230207-acbu89"
+        ]
+      }
+    ]
+  }
+}

@@ -3,7 +3,7 @@ import { routerConfig } from "@/configs/router.config";
 import { CoreLayout } from "@/layouts/CoreLayout";
 import { InvoiceListingPage } from "@/pages/Invoices/InvoiceListingPage";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { InvoiceDetail } from "@/pages/Invoices/InvoiceDetail";
+import { InvoiceDetailPage } from "@/pages/Invoices/InvoiceDetailPage";
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -17,7 +17,7 @@ export const AppRoutes: React.FC = () => {
         />
         <Route
           path={`${routerConfig.invoice.path}/:invoice_no`}
-          element={<InvoiceDetail />}
+          element={<InvoiceDetailPage />}
         />
       </Route>
 

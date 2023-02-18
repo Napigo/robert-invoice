@@ -5,10 +5,11 @@ export interface Session {
 
 export interface Product {
   SKU: string;
-  unitPrice: string;
-  description: string;
-  quantity: string;
-  serialNumbers: string[];
+  Name: string;
+  UnitPrice: string;
+  Description: string;
+  Quantity: string;
+  SerialNumbers: string[];
 }
 
 export interface Invoice {
@@ -18,4 +19,8 @@ export interface Invoice {
   Email: string;
   GrandTotalPrice: string;
   DatePurchased: string;
+}
+
+export interface InvoiceDetail extends Invoice {
+  Products: Product[];
 }

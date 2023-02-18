@@ -70,10 +70,10 @@ export const AppLoader: React.FC = () => {
               }}
             >
               <Spinner
-                color="brand.500"
+                // color="brand.500"
                 size="lg"
                 thickness="4px"
-                emptyColor="brandAlpha.300"
+                // emptyColor="brandAlpha.300"
               />
             </ChakraBox>
             <Text fontSize="md">Loading app...</Text>
