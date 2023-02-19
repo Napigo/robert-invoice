@@ -1,3 +1,4 @@
+import React from "react";
 import { CalendarIcon } from "@chakra-ui/icons";
 import {
   FormControl,
@@ -5,8 +6,7 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import React from "react";
-import { RangeDatepicker } from "../../UIKIT/DateRangePicker";
+import { RangeDatepicker } from "@/components/UIKit/DateRangePicker";
 
 export const InvoicePeriod: React.FC = () => {
   return (

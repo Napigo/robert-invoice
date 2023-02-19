@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import { Flex } from "@chakra-ui/react";
-import { useState } from "react";
 import { CalendarPanel } from "./CalendarPanel";
 import { Props as DayzedHookProps } from "dayzed";
 import { CalendarConfigs, PropsConfigs } from "./commonTypes";
@@ -36,9 +36,9 @@ export const RangeCalendarPanel: React.FC<RangeCalendarPanelProps> = ({
     if (!Array.isArray(selected) || !selected?.length) {
       return false;
     }
-    let firstSelected = selected[0];
+    const firstSelected = selected[0];
     if (selected.length === 2) {
-      let secondSelected = selected[1];
+      const secondSelected = selected[1];
       return firstSelected < date && secondSelected > date;
     } else {
       return (

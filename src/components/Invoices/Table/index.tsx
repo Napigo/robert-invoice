@@ -23,12 +23,12 @@ import { IoEllipsisVertical } from "react-icons/io5";
 import { Invoice } from "@/types";
 import { uniqueId } from "lodash";
 import { displayCurrency } from "@/utils/currency";
-import { Pagination } from "@/components/UIKIT/Pagination";
 import { fetchInvoices } from "@/lib/apis/invoice-service";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { SearchFilterArea } from "../SearchFilterArea";
 import { useNavigate } from "react-router-dom";
+import { Pagination } from "@/components/UIKit/Pagination";
 
 export const InvoiceTable: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
