@@ -3,7 +3,7 @@ import { useSession } from "@/hooks/useSession";
 import { Box, Button, FormControl } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import React, { FormEvent } from "react";
-import { Form } from "../UIKit";
+import { Form } from "@/components/UIKit";
 
 interface LoginFormValues {
   username: string;
